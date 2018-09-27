@@ -4,14 +4,8 @@
 <div class="container">
 	<div class="text-center"><h2 class="text-primary title">Autores<h2></div>
 	<div class="row">
-		<div class="col-lg-4">
-			<form id="autor-form" action="{% url 'autor-create' %}"> 
-				{% csrf_token %}
-				{{ form.as_p }}
-				<button type='submit' class="btn btn-primary">Submit</button>
-			</form>
-		</div>
-		<div id="autores-table" class="col-lg-8">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
 			<table class="table">
 				<thead>
 					<tr>
@@ -49,30 +43,7 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="col-lg-2"></div>
 	</div>
 </div>
 {% endblock content %}
-
-{% block js %}
-<script type="text/javascript">
-	$('#autor-form').submit(function(event){
-		event.preventDefault();
-		var form = $(this)
-		$.ajax({
-			url: form.attr('action'),
-			data: form.serialize(),
-			dataType: 'json',
-			method: 'POST',
-			success: function (data){
-				if ('errors' in data) {
-					alert('Erro!');
-				} else {
-					$('#autores-table').load("{% url 'autor-list' %} #autores-table")
-					alert('Usuario Cadastrado!')
-					form.trigger('reset');
-				}
-			}
-		});
-	});
-</script>
-{% endblock js %}
