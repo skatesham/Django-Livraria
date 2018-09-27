@@ -1,0 +1,46 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+<div class="row text-center">
+	<form method="post">
+		{% csrf_token %}
+		{{ form.non_field_errors }}
+		<p>
+			{{ form.nome.errors }} {{ form.nome.label_tag }} {{ form.nome }}
+			<br/>
+			<small id='nome_taken'>empty</small>
+		</p>
+
+		<p>
+			{{form.idade.errors}} {{ form.idade.label_tag }} {{ form.idade }}
+		</p>
+		<button type="submit" class="button_primary">Enviar</button>
+		<script type="text/javascript">
+			$(function(){
+				$('form>input').addClass('bg-light');
+			});
+		</script>
+	</form>
+</div>
+{% endblock content %}
+{% block js %}
+	<script type="text/javascript">
+		$('#id_nome').change(function(){
+			var nome = $(this).val()
+			$.ajax({
+				url: '{% url "autor-taken" %}',
+				data: {
+					'nome': nome
+				},
+				dataType:'json',
+				success: function(data){
+					if(data.is_taken){
+						$('#nome_taken').html("Já Cadastro!");
+					} else {
+						$('#nome_taken').html("Nome Válido");
+					}
+				}
+			});
+		});
+	</script>
+{% endblock js %}

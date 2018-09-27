@@ -1,0 +1,49 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="text-center"><h2 class="text-danger title">Editoras<h2></div>
+	<div class="row">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">PK</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Avaliacao</th>
+						<td scope="col"><i class="fas fa-hand-pointer"></i></td>
+						<td scope="col"><i class="fas fa-trash-alt"></i></td>
+					</tr>	
+				</thead>
+
+				<tbody>
+					
+					{% for obj in object_list %}
+					<tr>
+						<td scope="row">{{forloop.counter}}</td>
+						<td>{{ obj.pk}}</td>
+						<td> {{ obj.nome}} </td>
+						<td> {{ obj.avaliacao }} </td>
+						<td> <a href="{% url 'livro-update' obj.pk %}"><i class="fas fa-hand-pointer"></i></a> </td>
+						<td> <a href="{% url 'livro-delete' obj.pk %}"><i class="fas fa-trash-alt"></a></td>
+					</tr>
+
+					{% endfor %}
+					<tr>
+						<td scope="row">#</td>
+						<td></td>
+						<td></td>
+						<td colspan="6"><a href="{% url 'livro-create'%}"><i class="fas fa-plus-square"> Novo</i></a></td>						
+						<td></td>
+						<td></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-lg-2"></div>
+	</div>
+</div>
+{% endblock content %}

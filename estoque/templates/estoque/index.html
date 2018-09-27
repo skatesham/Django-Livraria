@@ -1,0 +1,35 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+
+	<h2 class="text-center text-success">
+		{{block.super}}
+	</h2>
+	<div class="container">
+		<div class="row">
+			<h1 class="text-center text-primary">Servidor Django</h1>
+		</div>
+		<div class="row text-center">
+			<div class="col-sm-6">
+
+			</div>
+		</div>
+
+		</div>
+		<div class="container">
+			 <ul class="list-group">
+			 	<li class="list-group-item"><a class="btn" href="{% url 'livro-json-list' %}"><i class="fas fa-list-ul"></i> Livros Json</a></li>
+			 	<li class="list-group-item"><a class="btn" href="{% url 'autor-taken' %}"><i class="fas fa-list-ul"></i> Is Taken</a></li>
+			</ul> 
+		</div>
+		<div class="container text-center">
+			<h3 class="text-danger">
+				{{ abacate|yesno:"sim, não"|title }}
+				{{ abacate|yesno:"Sim, Não"|length }}
+				{{ default|default:"---"}}
+					{% if abacate %}
+						ABACATE!
+					{% endif %}		
+			</h3>
+		</div>
+{% endblock content %}

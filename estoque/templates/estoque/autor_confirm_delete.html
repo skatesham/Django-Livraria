@@ -1,0 +1,11 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+	<form method="post">
+		{% csrf_token %}
+		<p>Os objetos a seguir, assim como seus objetos relacionados, serão excluidos. Tem certeza?</p>
+		<h4>{{object.nome}}</h4>
+		<button type="submit" class="button_primary">Enviar</button>
+
+	</form>
+{% endblock content %}

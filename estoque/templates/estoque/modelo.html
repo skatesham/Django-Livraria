@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Servidor Django</title>
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- CSS com FontAwesome -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="js/index.js"></script>
+  <style type="text/css">
+      body{
+      background-image: url("img/6320.jpg");
+    }
+  </style>
+</head>
+<body>
+	<!-- http://getbootstrap.com/docs/3.3/components/#navbar -->
+<nav class="navbar navbar-default fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+      	<i class="fab fa-python"></i>
+      	Projeto Django
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active" id="menu_home"><a href="#"><i class="fas fa-frog"></i> Home<span class="sr-only">(current)</span></a></li>
+        <li id="menu_autores"><a id="" href="#"><i class="fas fa-fingerprint"></i> Autores</a></li>
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+	<div class="container">
+		{% block content%}
+			Corpo HTML
+		{% endblock content %}
+	</div>
+  <!-- Background Image. Fonte: 
+  https://www.freepik.com/free-photos-vectors/background-color
+    <a href="https://www.freepik.com/free-vector/watercolour-splatter-in-rainbow-colours_1215454.htm">Designed by Kjpargeter</a> -->
+      <div class="text-dark text-center fixed-bottom">Copyright &copy; Sham</div>
+<footer>
+</footer>
+</body>
+</html>

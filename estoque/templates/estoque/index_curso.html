@@ -1,0 +1,37 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+
+	<h2 class="text-center text-success">
+		{{block.super}}
+	</h2>
+	<div class="container">
+		<div class="row">
+			<h1 class="text-center text-primary">Servidor Django</h1>
+		</div>
+		<div class="row text-center">
+			<div class="col-sm-6">
+				<button formmethod="get" formaction="/admin"  class="btn btn-primary">GET</button>
+			</div>
+			<div class="col-sm-6">
+				<button formmethod="post" formaction="/" class="btn btn-warning">POST</button>
+			</div>
+		</div>
+		<div class="container">
+			 <ul class="list-group">
+			 {% for item in lista %}
+			 	{% include 'estoque/li.html' %}
+			 {% endfor %}
+			</ul> 
+		</div>
+		<div class="container text-center">
+			<h3 class="text-danger">
+				{{ abacate|yesno:"sim, não"|title }}
+				{{ abacate|yesno:"Sim, Não"|length }}
+				{{ default|default:"---"}}
+					{% if abacate %}
+						ABACATE!
+					{% endif %}		
+			</h3>
+		</div>
+{% endblock content %}

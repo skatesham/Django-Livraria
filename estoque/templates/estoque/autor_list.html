@@ -1,0 +1,49 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="text-center"><h2 class="text-primary title">Autores<h2></div>
+	<div class="row">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">PK</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Idade</th>
+						<td scope="col">Selecionar</td>
+						<td scope="col">Deletar</td>
+					</tr>	
+				</thead>
+
+				<tbody>
+					
+					{% for obj in object_list %}
+					<tr>
+						<td scope="row">{{forloop.counter}}</td>
+						<td>{{ obj.pk}}</td>
+						<td> {{ obj.nome}} </td>
+						<td> {{ obj.idade }} </td>
+						<td> <a href="{% url 'autor-update' obj.pk %}"><i class="fas fa-hand-pointer"></i></a> </td>
+						<td> <a href="{% url 'autor-delete' obj.pk %}"><i class="fas fa-trash-alt"></a></td>
+					</tr>
+
+					{% endfor %}
+					<tr>
+						<td scope="row">#</td>
+						<td></td>
+						<td></td>
+						<td colspan="6"><a href="{% url 'autor-create'%}"><i class="fas fa-plus-square"> Novo</i></a></td>							
+						<td></td>
+						<td></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-lg-2"></div>
+	</div>
+</div>
+{% endblock content %}
