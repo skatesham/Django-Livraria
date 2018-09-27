@@ -48,6 +48,7 @@ postando um dado via Ajax
 
 # Dia 5
 apresentar exemplo simples de context processor
-apresentar exemplo simples de middlewarelivre para a implementação do projeto com ajuda
+apresentar exemplo simples de middleware
+livre para a implementação do projeto com ajuda
 
 	Por Sham Vinicius Fiorin
