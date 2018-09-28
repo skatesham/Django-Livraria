@@ -1,8 +1,12 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
 
 from . import views
 
 urlpatterns = [
+
+
 	path('', views.index, name='index'),
 	path('autores/',views.AutorListView.as_view(), name='autor-list'),
 	path('autores/novo/', views.AutorCreateView.as_view(), name="autor-create"),

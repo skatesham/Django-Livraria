@@ -8,6 +8,9 @@ from django.views.generic.edit import FormMixin
 from django.db.models import Q
 from django.http import JsonResponse
 from django.views.generic.edit import ModelFormMixin
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # from django.http import HttpResponse
@@ -25,13 +28,11 @@ class PageInfoMixin(object):
 		return super().get_context_data(**kwargs)
 
 
-
-
+@login_required(login_url='accounts/login')
 def index(request):
 	return render(request, 'estoque/index.html', {
 		'abacate': True,
-		'default': None,
-		'lista': [1,2,3,4,5]
+		'default': None
 		})
 
 #	AUTORES
@@ -234,5 +235,6 @@ def autor_nome_registrado(request):
 	}
 	if data['is_taken']:
 		data['error_message'] = ' O autor já está cadastrado'
+
 	return JsonResponse(data)
 
