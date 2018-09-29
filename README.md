@@ -60,4 +60,4 @@ Criar uma aplicação que gerencie um estoque simples de uma livraria
 - apresentar exemplo simples de middleware
 - livre para a implementação do projeto com ajuda
 
-	Por Sham Vinicius Fiorin
+> Desenvolvido por Sham Vinicius Fiorin
