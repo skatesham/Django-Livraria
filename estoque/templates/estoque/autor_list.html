@@ -2,25 +2,41 @@
 
 {% block content %}
 <div class="container">
-	<div class="text-center"><h2 class="text-primary title">Autores<h2></div>
+	<div class="text-center"><h2 class="text-primary title p-2 m-2">Autores<h2></div>
 	<div class="row">
-		<div class="col-lg-4">
-			<form id="autor-form" action="{% url 'autor-create' %}"> 
-				{% csrf_token %}
-				{{ form.as_p }}
-				<button type='submit' class="btn btn-primary">Submit</button>
-			</form>
+		<div class="col-sm-3 text-center">
+			{% if user.is_authenticated %}
+			<h2>Inserir Novo Autor</h2>
+				<form method="post">
+					{% csrf_token %}
+					{{ form.non_field_errors }}
+					<p>
+						{{ form.nome.errors }} {{ form.nome.label_tag }} {{ form.nome }}
+						<br/>
+						<br/>
+						<small class="alert alert-warning" id='nome_taken'></small>
+					</p>
+
+					<p>
+						{{form.idade.errors}} {{ form.idade.label_tag }} {{ form.idade }}
+					</p>
+					<button id="btn-nome" type="submit" class="button_primary">Enviar</button>
+				</form>
+          	{% endif %}
+
 		</div>
-		<div id="autores-table" class="col-lg-8">
+		<div id="autores-table" class="col-sm-6 mr-sm-auto">
 			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">PK</th>
 						<th scope="col">Nome</th>
 						<th scope="col">Idade</th>
-						<td scope="col">Selecionar</td>
+						{% if user.is_authenticated %}
+ 						<td scope="col">Alterar</td>
 						<td scope="col">Deletar</td>
+          				{% endif %}
+
 					</tr>	
 				</thead>
 
@@ -29,23 +45,16 @@
 					{% for obj in object_list %}
 					<tr>
 						<td scope="row">{{forloop.counter}}</td>
-						<td>{{ obj.pk}}</td>
 						<td> {{ obj.nome}} </td>
 						<td> {{ obj.idade }} </td>
+						{% if user.is_authenticated %}
 						<td> <a href="{% url 'autor-update' obj.pk %}"><i class="fas fa-hand-pointer"></i></a> </td>
 						<td> <a href="{% url 'autor-delete' obj.pk %}"><i class="fas fa-trash-alt"></a></td>
+          				{% endif %}
+
 					</tr>
 
 					{% endfor %}
-					<tr>
-						<td scope="row">#</td>
-						<td></td>
-						<td></td>
-						<td colspan="6"><a href="{% url 'autor-create'%}"><i class="fas fa-plus-square"> Novo</i></a></td>							
-						<td></td>
-						<td></td>
-
-					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -74,5 +83,30 @@
 			}
 		});
 	});
+	$('#nome_taken').hide()
+		$('#id_nome').keyup(function(){
+			$('#nome_taken').show();
+			$(this).attr('autocomplete', 'off')
+			var nome = $(this).val();
+			$.ajax({
+				url: '{% url "autor-taken" %}',
+				data: {'nome': nome},
+				dataType:'json',
+				success: function(data){
+					if(data.is_taken){
+						$('#nome_taken').html("Já Cadastrado!");
+						$('#nome_taken').removeClass('alert-warning alert-success');
+						$('#nome_taken').addClass('alert-danger');
+						$("#btn-nome").prop('disabled', true);
+						
+					} else {
+						$('#nome_taken').html("Nome Válido");
+						$('#nome_taken').removeClass('alert-warning alert-danger');
+						$('#nome_taken').addClass('alert-success');
+						$("#btn-nome").prop('disabled', false);
+					}
+				},
+			});
+		});
 </script>
 {% endblock js %}

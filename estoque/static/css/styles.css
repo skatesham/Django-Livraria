@@ -5,6 +5,11 @@ body{
     }
 
 
+.background {
+  background-color: #ff6666;
+
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

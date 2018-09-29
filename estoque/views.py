@@ -11,8 +11,24 @@ from django.views.generic.edit import ModelFormMixin
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 
-# Create your views here.
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
 # from django.http import HttpResponse
 
 class PageInfoMixin(object):
@@ -28,7 +44,6 @@ class PageInfoMixin(object):
 		return super().get_context_data(**kwargs)
 
 
-@login_required(login_url='accounts/login')
 def index(request):
 	return render(request, 'estoque/index.html', {
 		'abacate': True,
@@ -181,11 +196,9 @@ class EditoraDeleteView(DeleteView):
 	success_url = reverse_lazy('editoras-list')
 
 #	LOJAS
-
 class LojaListView(ListView):
 	model = Loja
 	templete_name = 'estoque/loja_list.html'
-
 
 class LojaCreateView(CreateView):
 	model = Loja
@@ -202,6 +215,8 @@ class LojaUpdateView(UpdateView):
 class LojaDeleteView(DeleteView):
 	model = Loja
 	success_url = reverse_lazy('loja-list')
+
+#	 JSON
 
 class JsonListMixin(object):
 	json_fields = []
@@ -223,7 +238,27 @@ class LivroJsonListView(JsonListMixin, LivroListView):
 		'editora__nome',
 		'autores__nome',
 	]
+	
+class AutorJsonListView(JsonListMixin, AutorListView):
+	json_fields = [
+		'nome',
+		'idade',
+	]
 
+class EditoraJsonListView(JsonListMixin, EditoraListView):
+	json_fields = [
+		'nome',
+		'avaliacao',
+	]
+
+class LojaJsonListView(JsonListMixin, LojaListView):
+	json_fields = [
+		'nome',
+		'livros',
+		'quantidade_de_clientes',
+	]
+
+#	is VALID AUTOR
 
 def autor_nome_registrado(request):
 	#import pdb; pdb.set_trace()

@@ -1,13 +1,30 @@
 <!-- templates/signup.html -->
-{% extends 'base.html' %}
+{% extends 'estoque/base.html' %}
 
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
+<div class="row text-center">
+  <div class="mr-sm-auto col-sm-8 ml-sm-auto">
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+    {% for field in form %}
+      <p class="trm">
+        {{ field.label_tag }}<br>
+        <p class="trm">{{ field }}<br>
+        {% if field.help_text %}
+          {{ field.help_text }}
+        {% endif %}
+        {% for error in field.errors %}
+          <p class="trm alert alert-danger" style="color: black">{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+    <button class="btn btn-success" type="submit">Sign up</button>
+    <br>
+    <br>
+    <br>
+  </form>    
+  </div>
+</div>
 {% endblock %}

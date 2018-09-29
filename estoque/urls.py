@@ -1,11 +1,10 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-
 from . import views
 
 urlpatterns = [
-
+	path('signup/', views.signup, name='signup'),
 
 	path('', views.index, name='index'),
 	path('autores/',views.AutorListView.as_view(), name='autor-list'),
@@ -22,13 +21,16 @@ urlpatterns = [
 	path('livros/update/<int:pk>/', views.LivroUpdateView.as_view(), name='livro-update'),
 	path('livros/remove/<int:pk>/', views.LivroDeleteView.as_view(), name="livro-delete"),
 
-	#	Buscar Livros Json
+	#	Buscar Json
 	path('livros.json/', views.LivroJsonListView.as_view(), name="livro-json-list"),
+	path('autor.json/', views.AutorJsonListView.as_view(), name="autor-json-list"),
+	path('editora.json/', views.EditoraJsonListView.as_view(), name="editora-json-list"),
+	path('loja.json/', views.LojaJsonListView.as_view(), name="loja-json-list"),
 	
 	#	Buscar Livros
 	path('livros/search/', views.LivroSearchFormView.as_view(), name='livro-search'),
 
-	path('editoras/',views.EditoraListView.as_view(), name='editora-list'),
+	path('editoras/',views.EditoraListView.as_view(), name='editoras-list'),
 	path('editoras/novo/', views.EditoraCreateView.as_view(), name="editora-create"),
 	path('editoras/update/<int:pk>/', views.EditoraUpdateView.as_view(), name='editora-update'),
 	path('editoras/remove/<int:pk>/', views.EditoraDeleteView.as_view(), name="editora-delete"),

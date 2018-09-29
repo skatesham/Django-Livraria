@@ -6,10 +6,7 @@
 			<div class="row text-center">
 				<div class="col-sm-5"></div>
 				<div class="col-sm-1 text-center">
-					<a href="{% url 'livro-search' %}"><i class="fas fa-search"></i><b> Buscar</b></a>
-				</div>
-				<div class="col-sm-1 text-center">
-					<p>{{page_info}}</p>
+					<p>{{ page_info }}</p>
 				</div>
 				<div class="col-sm-5"></div>
 			
@@ -17,23 +14,28 @@
 
 			
 
-	<div class="row">
-						<div class="col-lg-3 col-sm-3 col-md-3">
+			<div class="row">
+			<div class="col-lg-3 col-sm-3 col-md-3 text-center">
+			<h2>Buscar Livro</h2>
 			<form>
 				{{ form.as_p }}
 				<button class="btn btn-success"><i class="fas fa-search"></i>  Filtrar</button>
 			</form>
 		</div>
-		<div class="col-lg-6 col-sm-6 col-md-6">
+		<div class="ml-sm-auto col-sm-8 mr-sm-auto text-center">
 			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">PK</th>
 						<th scope="col">Nome</th>
+						<th scope="col">Editora</th>
+						<th scope="col">Autores</th>
 						<th scope="col">Avaliacao</th>
+						{% if user.is_authenticated %}
 						<td scope="col"><i class="fas fa-hand-pointer"></i></td>
 						<td scope="col"><i class="fas fa-trash-alt"></i></td>
+			          	{% endif %}
+
 					</tr>	
 				</thead>
 
@@ -42,14 +44,20 @@
 					{% for obj in object_list %}
 					<tr>
 						<td scope="row">{{forloop.counter}}</td>
-						<td>{{ obj.pk}}</td>
-						<td> {{ obj.nome}} </td>
-						<td> {{ obj.avaliacao }} </td>
+						<td>{{ obj.nome}}</td>
+						<td>{{ obj.editora }}</td>
+						<td>{{ obj.autores }}</td>
+						<td>{{ obj.avaliacao }}</td>
+						{% if user.is_authenticated %}
 						<td> <a href="{% url 'livro-update' obj.pk %}"><i class="fas fa-hand-pointer"></i></a> </td>
 						<td> <a href="{% url 'livro-delete' obj.pk %}"><i class="fas fa-trash-alt"></a></td>
+			          	{% endif %}
+
 					</tr>
 
 					{% endfor %}
+					
+					{% if user.is_authenticated %}
 					<tr>
 						<td scope="row">#</td>
 						<td></td>
@@ -57,12 +65,12 @@
 						<td colspan="6"><a href="{% url 'livro-create'%}"><i class="fas fa-plus-square"> Novo</i></a></td>						
 						<td></td>
 						<td></td>
+		          	{% endif %}
 
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-lg-3 col-sm-3 col-md-3"></div>
 	</div>
 </div>
 {% endblock content %}

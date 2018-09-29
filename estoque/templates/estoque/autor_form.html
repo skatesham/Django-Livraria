@@ -1,46 +1,52 @@
 {% extends 'estoque/base.html' %}
 
 {% block content %}
+<h2 class="text text-center p-2">Altera Usuário</h2>
 <div class="row text-center">
+
+	<div class="ml-sm-auto col-sm-4 mr-sm-auto">
 	<form method="post">
 		{% csrf_token %}
 		{{ form.non_field_errors }}
 		<p>
 			{{ form.nome.errors }} {{ form.nome.label_tag }} {{ form.nome }}
 			<br/>
-			<small id='nome_taken'>empty</small>
+			<br/>
+			<small class="alert alert-warning" id='nome_taken'>Digite</small>
 		</p>
 
 		<p>
 			{{form.idade.errors}} {{ form.idade.label_tag }} {{ form.idade }}
 		</p>
 		<button type="submit" class="button_primary">Enviar</button>
-		<script type="text/javascript">
-			$(function(){
-				$('form>input').addClass('bg-light');
-			});
-		</script>
 	</form>
+	</div>
 </div>
 {% endblock content %}
+
 {% block js %}
 	<script type="text/javascript">
-		$('#id_nome').change(function(){
-			var nome = $(this).val()
+		$('#id_nome').keyup(function(){
+			$(this).attr('autocomplete', 'off')
+			var nome = $(this).val();
 			$.ajax({
 				url: '{% url "autor-taken" %}',
-				data: {
-					'nome': nome
-				},
+				data: {'nome': nome},
 				dataType:'json',
 				success: function(data){
 					if(data.is_taken){
-						$('#nome_taken').html("Já Cadastro!");
+						$('#nome_taken').html("Já Cadastrado!");
+						$('#nome_taken').removeClass('alert-warning alert-success');
+						$('#nome_taken').addClass('alert-danger');
+						
 					} else {
 						$('#nome_taken').html("Nome Válido");
+						$('#nome_taken').removeClass('alert-warning alert-danger');
+						$('#nome_taken').addClass('alert-success');
 					}
-				}
+				},
 			});
 		});
 	</script>
 {% endblock js %}
+
