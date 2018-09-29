@@ -4,7 +4,7 @@ Django Application Curso Necto Systems
 
 ## Tela Inicial Resposiva
 <p align="center">
-  <img width="460" height="300" src="https://raw.githubusercontent.com/skatesham/Django-Livraria/master/imgs/inicial.png">
+  <img src="https://raw.githubusercontent.com/skatesham/Django-Livraria/master/imgs/inicial.png">
 </p>
 
 ## Tela Livros
