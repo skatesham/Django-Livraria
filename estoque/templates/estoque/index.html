@@ -6,7 +6,7 @@
 	</h2>
 	<div class="container">
 		<div class="m-2 p-2 text-center">
-			<h1 class="text-dark">Anova Livraria</h1>
+			<h1 class="text-dark"><i class="fab fa-python"></i> Anova Livraria</h1>
           	{% if not user.is_authenticated %}
           	<small class="alert alert-warning"> Para mais funcionalidade na livraria, faça o login.</small>
           	{% endif %}
@@ -17,10 +17,10 @@
 			
 			 <ul class="list-group">
 			 	<li class="list-group-item"><h3 class="text-center">API REST ler itens</h3></li>
-			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'autor-json-list' %}"><i class="fas fa-list-ul"></i> Autores REST</a></li>
-			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'livro-json-list' %}"><i class="fas fa-list-ul"></i> Livros REST</a></li>
-			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'editora-json-list' %}"><i class="fas fa-list-ul"></i> Editora REST</a></li>
-			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'loja-json-list' %}"><i class="fas fa-list-ul"></i> Lojas REST</a></li>
+			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'autor-json-list' %}"><i class="fas fa-fingerprint"></i> Autores REST</a></li>
+			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'livro-json-list' %}"><i class="fas fa-book-open"></i> Livros REST</a></li>
+			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'editora-json-list' %}"><i class="fas fa-building"></i> Editora REST</a></li>
+			 	<li class="list-group-item"><a class="nav-link text-dark" href="{% url 'loja-json-list' %}"><i class="fas fa-shopping-cart"></i> Lojas REST</a></li>
 			</ul> 
 		</div>
 {% endblock content %}

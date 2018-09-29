@@ -1,8 +1,10 @@
 {% extends 'estoque/base.html' %}
 
 {% block content %}
-<div class="container">
-	<div class="text-center"><h2 class="text-muted title">Lojas<h2></div>
+<div class="container text-center">
+	<div class="text-center"><h2 class="m-2 p-2"><i class="fas fa-shopping-cart"></i> Lojas<h2></div>          	{% if not user.is_authenticated %}
+          	<small class="alert alert-warning"> Para mais funcionalidade na livraria, faça o login.</small>
+          	{% endif %}
 	<div class="row">
 		<div class="ml-sm-auto col-sm-8 mr-sm-auto text-center">
 			<table class="table">

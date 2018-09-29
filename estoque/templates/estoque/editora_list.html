@@ -1,8 +1,11 @@
 {% extends 'estoque/base.html' %}
 
 {% block content %}
-<div class="container">
-	<div class="text-center"><h2 class="p-2 m-2 text-danger title">Editoras<h2></div>
+<div class="container text-center">
+	<div class="text-center"><h2 class="p-2 m-2 "><i class="fas fa-building"></i> Editoras<h2></div>
+          	{% if not user.is_authenticated %}
+          	<small class="alert alert-warning"> Para mais funcionalidade na livraria, faça o login.</small>
+          	{% endif %}
 	<div class="row">
 		<div class="col-lg-2"></div>
 		<div class="col-lg-8">
