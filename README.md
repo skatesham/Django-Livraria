@@ -8,6 +8,9 @@ Django Application Curso Necto Systems
 ## Tela Livros
 ![alt text](https://raw.githubusercontent.com/skatesham/Django-Livraria/master/imgs/Livros.png)
 
+## Autores
+![alt text](https://raw.githubusercontent.com/skatesham/Django-Livraria/master/imgs/Autores.png)
+
 # Problema
 Criar uma aplicação que gerencie um estoque simples de uma livraria
 
