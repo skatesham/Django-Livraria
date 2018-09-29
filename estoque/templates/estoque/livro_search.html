@@ -1,28 +1,26 @@
 {% extends 'estoque/base.html' %}
 
 {% block content %}
-<div class="container">
-	<div class="text-center"><h2 class="text-warning title">Livros<h2></div>
+<div class="container text-center">
+		<h2 class="text-center m-3"><i class="fas fa-book-open"></i>  Livros</h2>
 			<div class="row text-center">
-				<div class="col-sm-5"></div>
-				<div class="col-sm-1 text-center">
-					<p>{{ page_info }}</p>
+				<div class="ml-sm-auto mr-sm-auto col-sm-2 text-center">
+					<p class="alert alert-info">{{ page_info }}</p>
 				</div>
-				<div class="col-sm-5"></div>
-			
-			</div>
 
-			
+		</div>
+	</div>
+</div>
 
-			<div class="row">
-			<div class="col-lg-3 col-sm-3 col-md-3 text-center">
+	<div class="row">
+		<div class="col-lg-3 col-sm-3 col-md-3 text-center">
 			<h2>Buscar Livro</h2>
 			<form>
 				{{ form.as_p }}
 				<button class="btn btn-success"><i class="fas fa-search"></i>  Filtrar</button>
 			</form>
 		</div>
-		<div class="ml-sm-auto col-sm-8 mr-sm-auto text-center">
+			<div class="ml-sm-auto col-sm-8 mr-sm-auto text-center">
 			<table class="table">
 				<thead>
 					<tr>
@@ -50,7 +48,7 @@
 						<td>{{ obj.avaliacao }}</td>
 						{% if user.is_authenticated %}
 						<td> <a href="{% url 'livro-update' obj.pk %}"><i class="fas fa-hand-pointer"></i></a> </td>
-						<td> <a href="{% url 'livro-delete' obj.pk %}"><i class="fas fa-trash-alt"></a></td>
+						<td> <a href="{% url 'livro-delete' obj.pk %}"><i class="fas fa-trash-alt"></i></a></td>
 			          	{% endif %}
 
 					</tr>
@@ -72,5 +70,12 @@
 			</table>
 		</div>
 	</div>
-</div>
+	        {% if not user.is_authenticated %}
+	      <div class="row text-center">
+          	<div class="ml-sm-auto mr-sm-auto col-sm-8">
+	          	<small class="alert alert-warning"> Para mais funcionalidade na livraria, faça o login.</small>
+          	{% endif %}
+		
+			</div>
+		<div>
 {% endblock content %}
